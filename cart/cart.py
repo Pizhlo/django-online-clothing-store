@@ -1,14 +1,13 @@
 from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
+from django.core.handlers.wsgi import WSGIRequest
 
 
 class Cart(object):
-
-    def __init__(self, request):
-        """
-        Инициализируем корзину
-        """
+    """Объект корзины"""
+    def __init__(self, request: WSGIRequest) -> None:
+        """Инициализация корзины"""
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
