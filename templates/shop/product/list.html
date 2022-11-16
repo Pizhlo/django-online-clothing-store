@@ -1,0 +1,17 @@
+{% extends "shop/base.html" %}
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+{% block content %}
+    Товары категории {{ category.name }}:
+    {% for p in products %}
+        <a href="{{ p.get_absolute_url }}">
+            <img src="{{ p.image.url }}">
+        </a>
+        <a href="{{ p.get_absolute_url }}">{{ p.name }}</a><br>
+        {{ p.price }}
+    {% endfor %}
+{% endblock %}
+</body>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+Категории товаров:
+{% for c in categories %}
+    <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+    </li>
+{%  endfor %}
+
+<a href="#">Регистрация</a>
+<a href="#">Войти</a>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

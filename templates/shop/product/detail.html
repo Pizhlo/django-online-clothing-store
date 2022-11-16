@@ -1,0 +1,13 @@
+{% extends "shop/base.html" %}
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+{% block content %}
+    {{ product.name }}
+    {{ product.description }}
+    {{ product.price }}
+    <img src="{{ product.image.url }}">
+{% endblock %}
+</body>

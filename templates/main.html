@@ -1,0 +1,19 @@
+{% extends "shop/base.html" %}
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+{% block content %}
+    Наши товары:
+    {% for product in products %}
+        <div class="item">
+            <a href="{{ product.get_absolute_url }}">
+                <img src="{{ product.image.url }}">
+            </a>
+            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+            {{ product.price }}
+        </div>
+    {% endfor %}
+{% endblock %}
+</body>
