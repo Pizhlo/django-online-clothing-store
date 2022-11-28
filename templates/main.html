@@ -5,14 +5,16 @@
 </head>
 <body>
 {% block content %}
-    Наши товары:
+    <br>Наши товары:
     {% for product in products %}
         <div class="item">
             <a href="{{ product.get_absolute_url }}">
-                <img src="{{ product.image.url }}">
+                <img src="{{ product.image.url }}" width="300" height="500"> <br>
             </a>
             <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-            {{ product.price }}
+            {{ product.price }} <br>
+            Доступные размеры: <br>
+            {{ product.sizes }}<br>
         </div>
     {% endfor %}
 {% endblock %}

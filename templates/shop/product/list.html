@@ -5,13 +5,16 @@
 </head>
 <body>
 {% block content %}
-    Товары категории {{ category.name }}:
+    <br>
+    Товары категории {{ category.name }}:<br>
     {% for p in products %}
         <a href="{{ p.get_absolute_url }}">
-            <img src="{{ p.image.url }}">
-        </a>
+            <img src="{{ p.image.url }}" width="300" height="500">
+        </a> <br>
         <a href="{{ p.get_absolute_url }}">{{ p.name }}</a><br>
-        {{ p.price }}
+        {{ p.price }}<br>
+        Доступные размеры: <br>
+        {{ p.sizes }}<br>
     {% endfor %}
 {% endblock %}
 </body>
