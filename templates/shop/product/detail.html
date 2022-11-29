@@ -5,9 +5,17 @@
 </head>
 <body>
 {% block content %}
-    {{ product.name }}
-    {{ product.description }}
-    {{ product.price }}
-    <img src="{{ product.image.url }}" width="300" height="500">
+    <br>
+    <b>{{ product.name }} </b> <br>
+    <i>{{ product.description }} </i> <br>
+    {{ product.price }} <br>
+    <img src="{{ product.image.url }}" width="300" height="500"> <br>
+    Доступные размеры: <br>
+    {{ product.sizes }}<br>
+    <form action="{% url "cart:add_to_cart" product.id %}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="Добавить в корзину">
+    </form>
 {% endblock %}
 </body>

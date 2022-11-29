@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from .models import *
 from django.core.handlers.wsgi import WSGIRequest
 from typing import Union
+from cart.forms import *
 
 
 def home(request: WSGIRequest) -> HttpResponse:
@@ -18,8 +19,12 @@ def product_detail(request: WSGIRequest, product_id: int, product_slug: str) -> 
                                 id=product_id,
                                 slug=product_slug,
                                 available=True)
-    # cart_product_form = CartAddProductForm()
-    return render(request, 'shop/product/detail.html', {'product': product})
+    pk = product.pk
+    categories = Category.objects.all()
+    cart_product_form = CartAddProductForm(instance=product, pk=pk)
+    return render(request, 'shop/product/detail.html', {'product': product,
+                                                        'categories': categories,
+                                                        'cart_product_form': cart_product_form})
 
 
 def product_list_by_category(request: WSGIRequest, slug: str) -> HttpResponse:
@@ -32,4 +37,3 @@ def product_list_by_category(request: WSGIRequest, slug: str) -> HttpResponse:
                   {'category': category,
                    'categories': categories,
                    'products': products})
-
